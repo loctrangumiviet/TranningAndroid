@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size_420dp"
+    android:elevation="@dimen/size_10dp"
+    android:background="@drawable/radius_white"
+    android:translationZ="@dimen/size_10dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="181dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_300dp"
+        android:background="@drawable/radius_pink"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/atvDetail_btnTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_30dp"
+        android:layout_marginEnd="@dimen/size_15dp"
+        android:background="@drawable/radius_brown"
+        android:textColor="@color/Black"
+        android:textStyle="bold"
+        android:elevation="@dimen/size_20dp"
+        android:translationZ="@dimen/size_20dp"
+        android:textSize="@dimen/text_size_11sp"
+        app:layout_constraintBottom_toTopOf="@id/atvDetail_cvFruit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Watermelon" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/atvDetail_cvFruit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_20dp"
+        app:cardCornerRadius="@dimen/size_180dp"
+        android:elevation="@dimen/size_5dp"
+        android:translationZ="@dimen/size_5dp"
+        app:layout_constraintBottom_toBottomOf="@id/center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/center">
+
+        <ImageView
+            android:id="@+id/atvDetail_imgFruit"
+            android:layout_width="@dimen/size_300dp"
+            android:layout_height="@dimen/size_300dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/images" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/atvDetail_tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_30dp"
+        android:layout_marginBottom="@dimen/size_10dp"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/text_size_35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/atvDetail_cvFruit"
+        tools:text="Banana" />
+
+    <TextView
+        android:id="@+id/atvDetail_tvTotalStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_30dp"
+        android:layout_marginBottom="@dimen/size_10dp"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/text_size_20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/atvDetail_tvTitle"
+        tools:text="3,5" />
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/atvDetail_ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_10dp"
+        android:layout_marginStart="@dimen/size_10dp"
+        style="?android:attr/ratingBarStyleSmall"
+        android:numStars="5"
+        android:rating="3.5"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:theme="@style/RatingBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/atvDetail_tvTotalStart"
+        app:layout_constraintTop_toBottomOf="@id/atvDetail_tvTitle" />
+
+    <TextView
+        android:id="@+id/atvDetail_tvAverageRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_10dp"
+        android:layout_marginStart="@dimen/size_10dp"
+        tools:text="(72)"
+        android:textColor="@color/Gray"
+        app:layout_constraintStart_toEndOf="@id/atvDetail_ratingBar"
+        app:layout_constraintTop_toBottomOf="@id/atvDetail_tvTitle"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

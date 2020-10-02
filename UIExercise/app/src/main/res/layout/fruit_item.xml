@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/size_10dp"
+    android:layout_marginHorizontal="@dimen/size_7dp"
+    app:cardBackgroundColor="@color/White"
+    app:cardCornerRadius="@dimen/size_15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/right_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <ImageView
+            android:id="@+id/fruitItem_imgFruit"
+            android:layout_width="@dimen/layout_width_empty"
+            android:layout_height="@dimen/size_150dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/fruitItem_tvFruitTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/images"/>
+
+        <Button
+            android:id="@+id/fruitItem_btnPromotion"
+            android:layout_width="@dimen/size_60dp"
+            android:layout_height="@dimen/size_20dp"
+            android:layout_marginEnd="@dimen/size_15dp"
+            android:textSize="@dimen/text_size_11sp"
+            android:background="@drawable/radius_button_fruit_promotion"
+            app:layout_constraintBottom_toBottomOf="@id/fruitItem_imgFruit"
+            app:layout_constraintStart_toStartOf="@id/right_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/size_10dp"/>
+
+        <TextView
+            android:id="@+id/fruitItem_tvFruitTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10dp"
+            android:layout_marginTop="@dimen/size_15dp"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fruitItem_imgFruit"
+            tools:text="Australian Cherry" />
+
+        <TextView
+            android:id="@+id/fruitItem_tvFruitDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10dp"
+            android:layout_marginTop="@dimen/size_5dp"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/text_size_15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fruitItem_tvFruitTitle"
+            tools:text="@string/app_name" />
+
+        <TextView
+            android:id="@+id/fruitItem_tvFruitPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10dp"
+            android:layout_marginVertical="@dimen/size_5dp"
+            android:textColor="@color/Green"
+            android:textSize="@dimen/text_size_20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fruitItem_tvFruitDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="$5.6" />
+
+        <TextView
+            android:id="@+id/fruitItem_tvDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_5dp"
+            android:padding="2dp"
+            android:textColor="@color/Gray"
+            android:textSize="@dimen/text_size_15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fruitItem_tvFruitPrice"
+            app:layout_constraintTop_toBottomOf="@id/fruitItem_tvFruitDescription"
+            tools:text="$7.2" />
+
+        <View
+            android:layout_width="@dimen/layout_width_empty"
+            android:layout_height="0.8dp"
+            android:background="@color/Gray"
+            app:layout_constraintBottom_toBottomOf="@id/fruitItem_tvDiscount"
+            app:layout_constraintEnd_toEndOf="@id/fruitItem_tvDiscount"
+            app:layout_constraintStart_toStartOf="@id/fruitItem_tvDiscount"
+            app:layout_constraintTop_toTopOf="@id/fruitItem_tvDiscount" />
+
+        <ImageButton
+            android:id="@+id/fruitItem_btnFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/Trans"
+            android:layout_marginTop="@dimen/size_20dp"
+            android:background="@drawable/radius_button"
+            app:layout_constraintStart_toStartOf="@id/right_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_baseline_favorite_border_24"
+            android:scaleType="fitCenter"
+            android:padding="@dimen/size_7dp"
+            />
+
+        <ImageButton
+            android:id="@+id/fruitItem_btnFruitCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_10dp"
+            android:background="@drawable/radius_button"
+            app:layout_constraintStart_toStartOf="@id/right_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/Green"
+            android:src="@drawable/ic_baseline_add_shopping_cart_24"
+            android:scaleType="fitCenter"
+            android:padding="@dimen/size_7dp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
