@@ -70,7 +70,7 @@
         android:textColor="@color/Black"
         android:textSize="@dimen/text_size_35sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/atvDetail_ratingBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/atvDetail_cvFruit"
         tools:text="Banana" />
@@ -93,7 +93,7 @@
         android:id="@+id/atvDetail_ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_10dp"
+        android:layout_marginBottom="@dimen/size_20dp"
         android:layout_marginStart="@dimen/size_10dp"
         style="?android:attr/ratingBarStyleSmall"
         android:numStars="5"

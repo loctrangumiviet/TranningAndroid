@@ -16,3 +16,4 @@
         tools:listitem="@layout/fruit_item" />
 
 </FrameLayout>
+

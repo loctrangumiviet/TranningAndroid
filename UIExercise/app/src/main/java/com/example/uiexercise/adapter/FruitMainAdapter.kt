@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,15 +22,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.Executors
 
 class FruitMainAdapter(
     private val getWidthScreen: () -> Int,
     private val onClickListener: (Fruit) -> Unit
-) : ListAdapter<Fruit, FruitMainAdapter.FruitViewHolder>(FruitDiffCallBack()) {
+) : ListAdapter<Fruit, FruitMainAdapter.FruitViewHolder>(
+    AsyncDifferConfig.Builder<Fruit>(FruitDiffCallBack())
+        .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
+        .build()
+) {
 
     inner class FruitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
-        fun bind(fruit: Fruit) {
+        fun bind(fruit: Fruit, position: Int) {
             with(itemView) {
                 fruitItem_tvFruitTitle.text = fruit.title
                 fruitItem_tvFruitDescription.text = fruit.description
@@ -91,6 +97,6 @@ class FruitMainAdapter(
     }
 
     override fun onBindViewHolder(holder: FruitViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), position)
     }
 }

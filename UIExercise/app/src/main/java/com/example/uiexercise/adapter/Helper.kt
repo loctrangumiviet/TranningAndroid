@@ -20,7 +20,7 @@ class Helper {
             val options: BitmapFactory.Options = BitmapFactory.Options()
             options.inJustDecodeBounds = true
             BitmapFactory.decodeStream(url.openConnection().getInputStream(), null, options)
-            options.inSampleSize = calculateInSampleSize(options, 256, 256)
+            options.inSampleSize = calculateInSampleSize(options, 128, 128)
             options.inJustDecodeBounds = false
             return BitmapFactory.decodeStream(url.openConnection().getInputStream(), null, options)!!
         }

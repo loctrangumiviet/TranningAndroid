@@ -7,7 +7,7 @@
     android:background="@drawable/background_gradient_right"
     tools:context=".ui.DetailActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -15,7 +15,10 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/atvDetail_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize">
+            android:layout_height="?actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/atvDetail_btnBack"
@@ -27,157 +30,184 @@
         </androidx.appcompat.widget.Toolbar>
 
         <include
-            android:layout_marginHorizontal="@dimen/size_20dp"
+            android:id="@+id/layoutImage"
             layout="@layout/content_image_fruit"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_420dp" />
+            android:layout_height="@dimen/size_420dp"
+            android:layout_marginHorizontal="@dimen/size_20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/atvDetail_toolbar" />
 
         <TextView
-            android:layout_marginHorizontal="@dimen/size_20dp"
+            android:id="@+id/tvTitleDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20dp"
             android:layout_marginTop="@dimen/size_15dp"
             android:text="@string/description"
-            android:textStyle="bold"
             android:textColor="@color/Black"
-            android:textSize="@dimen/text_size_22sp" />
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutImage" />
 
         <TextView
             android:id="@+id/atvDetail_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20dp"
             android:layout_marginTop="@dimen/size_15dp"
             android:textColor="@color/Black"
             android:textSize="@dimen/text_size_15sp"
-            android:layout_marginHorizontal="@dimen/size_20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleDescription"
             tools:text="Banana is yellow and have very much calories, not toxic" />
 
         <TextView
+            android:id="@+id/tvTitleAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20dp"
             android:layout_marginTop="@dimen/size_15dp"
             android:text="@string/amount"
-            android:textStyle="bold"
-            android:layout_marginHorizontal="@dimen/size_20dp"
             android:textColor="@color/Black"
-            android:textSize="@dimen/text_size_22sp" />
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/atvDetail_description" />
 
-        <LinearLayout
-            android:layout_marginHorizontal="@dimen/size_20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:id="@+id/atvDetail_btnReduced"
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="@dimen/size_50dp"
+            android:layout_marginStart="@dimen/size_20dp"
             android:layout_marginTop="@dimen/size_15dp"
-            android:elevation="@dimen/size_10dp"
-            android:translationZ="@dimen/size_7dp"
+            android:background="@drawable/radius_start"
+            android:src="@drawable/ic_baseline_remove_24"
+            app:layout_constraintEnd_toStartOf="@id/atvDetail_btnIncreased"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleAmount" />
+
+        <View
+            android:layout_width="@dimen/layout_width_empty"
+            android:layout_height="@dimen/size_50dp"
             android:background="@drawable/radius_amount"
-            android:orientation="horizontal">
+            app:layout_constraintEnd_toEndOf="@id/atvDetail_tvAmount"
+            app:layout_constraintStart_toEndOf="@id/atvDetail_btnReduced"
+            app:layout_constraintTop_toTopOf="@id/atvDetail_tvAmount" />
 
-            <ImageButton
-                android:id="@+id/atvDetail_btnReduced"
-                android:layout_width="@dimen/size_50dp"
-                android:layout_height="@dimen/size_50dp"
-                android:layout_marginEnd="2dp"
-                android:background="@drawable/radius_start"
-                android:src="@drawable/ic_baseline_remove_24" />
-
-            <ImageButton
-                android:id="@+id/atvDetail_btnIncreased"
-                android:layout_width="@dimen/size_50dp"
-                android:layout_height="@dimen/size_50dp"
-                android:background="@drawable/radius_end"
-                android:src="@drawable/ic_baseline_add_24" />
-
-            <TextView
-                android:id="@+id/atvDetail_tvAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="@dimen/size_10dp"
-                android:padding="@dimen/size_10dp"
-                android:textColor="@color/Black"
-                android:textSize="@dimen/text_size_22sp"
-                tools:text="5" />
-        </LinearLayout>
+        <ImageButton
+            android:id="@+id/atvDetail_btnIncreased"
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="@dimen/size_50dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="@dimen/size_15dp"
+            android:background="@drawable/radius_end"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintStart_toEndOf="@id/atvDetail_btnReduced"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleAmount" />
 
         <TextView
-            android:layout_marginHorizontal="@dimen/size_20dp"
+            android:id="@+id/atvDetail_tvAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/size_10dp"
+            android:layout_marginTop="@dimen/size_15dp"
+            android:padding="@dimen/size_10dp"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/text_size_22sp"
+            app:layout_constraintStart_toEndOf="@id/atvDetail_btnIncreased"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleAmount"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/tvTitleSuggestions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20dp"
             android:layout_marginTop="@dimen/size_15dp"
             android:text="@string/suggestions"
-            android:textStyle="bold"
             android:textColor="@color/Black"
-            android:textSize="@dimen/text_size_22sp" />
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/atvDetail_btnReduced" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/atvDetail_rcvFruitSuggestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/size_15dp"
             android:layout_marginStart="@dimen/size_20dp"
+            android:layout_marginTop="@dimen/size_10dp"
+            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleSuggestions"
             app:reverseLayout="false"
             tools:listitem="@layout/fruit_suggestion_item" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <View
+            android:id="@+id/bgButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/radius_black"
-            android:orientation="horizontal"
+            android:layout_height="@dimen/size_70dp"
             android:layout_marginHorizontal="@dimen/size_20dp"
             android:layout_marginVertical="@dimen/size_15dp"
-            android:elevation="@dimen/size_10dp"
-            android:translationZ="@dimen/size_10dp"
-            android:padding="@dimen/size_15dp">
+            android:background="@drawable/radius_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/atvDetail_rcvFruitSuggestion" />
 
-            <ImageView
-                android:id="@+id/atvDetail_imgLogo"
-                android:layout_width="@dimen/size_50dp"
-                android:layout_height="@dimen/size_50dp"
-                android:src="@drawable/ic_baseline_monetization_on_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/atvDetail_imgLogo"
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="@dimen/size_50dp"
+            android:layout_marginStart="@dimen/size_30dp"
+            android:src="@drawable/ic_baseline_monetization_on_24"
+            app:layout_constraintBottom_toBottomOf="@+id/bgButton"
+            app:layout_constraintStart_toStartOf="@+id/bgButton"
+            app:layout_constraintTop_toTopOf="@+id/bgButton" />
 
-            <TextView
-                android:id="@+id/atvDetail_tvPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/White"
-                android:textSize="@dimen/text_size_22sp"
-                android:textStyle="bold"
-                android:layout_marginStart="@dimen/size_10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/atvDetail_imgLogo"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="7,99$" />
+        <TextView
+            android:id="@+id/atvDetail_tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_10dp"
+            android:textColor="@color/White"
+            android:textSize="@dimen/text_size_22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/bgButton"
+            app:layout_constraintStart_toEndOf="@id/atvDetail_imgLogo"
+            app:layout_constraintTop_toTopOf="@id/bgButton"
+            tools:text="7,99$" />
 
-            <TextView
-                android:id="@+id/atvDetail_titleButtonCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/White"
-                android:textSize="@dimen/text_size_22sp"
-                app:layout_constraintStart_toEndOf="@id/atvDetail_tvPrice"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/atvMain_btnAddCard"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="@string/add_to_card" />
+        <TextView
+            android:id="@+id/atvDetail_titleButtonCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_to_card"
+            android:textColor="@color/White"
+            android:textSize="@dimen/text_size_22sp"
+            app:layout_constraintBottom_toBottomOf="@id/bgButton"
+            app:layout_constraintEnd_toStartOf="@id/atvMain_btnAddCard"
+            app:layout_constraintStart_toEndOf="@id/atvDetail_tvPrice"
+            app:layout_constraintTop_toTopOf="@id/bgButton" />
 
-            <ImageButton
-                android:id="@+id/atvMain_btnAddCard"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/radius_brown"
-                android:padding="@dimen/size_10dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_baseline_add_shopping_cart_24"
-                android:tint="@color/Black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+        <ImageButton
+            android:id="@+id/atvMain_btnAddCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/radius_brown"
+            android:padding="@dimen/size_10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_add_shopping_cart_24"
+            android:tint="@color/Black"
+            app:layout_constraintBottom_toBottomOf="@id/bgButton"
+            app:layout_constraintEnd_toEndOf="@id/bgButton"
+            app:layout_constraintStart_toEndOf="@id/atvDetail_titleButtonCard"
+            app:layout_constraintTop_toTopOf="@id/bgButton" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
