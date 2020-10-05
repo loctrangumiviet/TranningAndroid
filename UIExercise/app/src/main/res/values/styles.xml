@@ -7,9 +7,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="RatingBar" parent="Theme.AppCompat">
+    <style name="RatingBar" parent="Widget.AppCompat.RatingBar.Small">
         <item name="colorControlActivated">@color/DarkYellow</item>
         <item name="colorControlNormal">@color/Gray</item>
+        <item name="minHeight">@dimen/size_10dp</item>
+        <item name="maxHeight">@dimen/size_10dp</item>
     </style>
 
 </resources>

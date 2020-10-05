@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.uiexercise.R
 import com.example.uiexercise.model.Fruit
 import com.example.uiexercise.model.Promotion
@@ -28,7 +29,7 @@ class FruitMainAdapter(
     private val getWidthScreen: () -> Int,
     private val onClickListener: (Fruit) -> Unit
 ) : ListAdapter<Fruit, FruitMainAdapter.FruitViewHolder>(
-    AsyncDifferConfig.Builder<Fruit>(FruitDiffCallBack())
+    AsyncDifferConfig.Builder(FruitDiffCallBack())
         .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
         .build()
 ) {
@@ -67,7 +68,15 @@ class FruitMainAdapter(
                             View.GONE
                         }
                     }
+
                 }
+
+                if (fruit.isFavorite) {
+                    fruitItem_btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_pink_24)
+                } else {
+                    fruitItem_btnFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                }
+
                 fruitItem_btnFruitCard.setOnClickListener { onClickListener(fruit) }
                 fruitItem_btnFavorite.setOnClickListener {
                     fruit.isFavorite = if (fruit.isFavorite) {
@@ -80,13 +89,12 @@ class FruitMainAdapter(
                 }
             }
 
-            GlobalScope.launch(Dispatchers.IO) {
-                val bitmap: Bitmap = Helper.getScaleBitmap(fruit.linkImage)!!
-                withContext(Dispatchers.Main) {
-                    Glide.with(itemView).load(bitmap).override(getWidthScreen() / 2)
-                        .into(itemView.fruitItem_imgFruit)
-                }
-            }
+            Glide.with(itemView)
+                .load(fruit.linkImage)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .override(getWidthScreen() / 2)
+                .into(itemView.fruitItem_imgFruit)
         }
     }
 
@@ -99,4 +107,5 @@ class FruitMainAdapter(
     override fun onBindViewHolder(holder: FruitViewHolder, position: Int) {
         holder.bind(getItem(position), position)
     }
+
 }

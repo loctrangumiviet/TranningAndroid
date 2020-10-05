@@ -94,7 +94,7 @@
             android:layout_height="@dimen/size_50dp"
             android:background="@drawable/radius_amount"
             app:layout_constraintEnd_toEndOf="@id/atvDetail_tvAmount"
-            app:layout_constraintStart_toEndOf="@id/atvDetail_btnReduced"
+            app:layout_constraintStart_toStartOf="@id/atvDetail_btnIncreased"
             app:layout_constraintTop_toTopOf="@id/atvDetail_tvAmount" />
 
         <ImageButton

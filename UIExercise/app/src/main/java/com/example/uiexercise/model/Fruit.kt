@@ -15,6 +15,6 @@ data class Fruit(
     var price: Double,
     var discount: Double,
     var promotion: Promotion,
-    var isFavorite: Boolean
+    var isFavorite: Boolean = false
 ) : Serializable {
 }
