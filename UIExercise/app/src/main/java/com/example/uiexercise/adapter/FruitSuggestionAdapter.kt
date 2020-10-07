@@ -19,13 +19,12 @@ class FruitSuggestionAdapter: ListAdapter<Fruit,FruitSuggestionAdapter.FruitSugg
             with(itemView){
                 fruitSuggestion_btnItem.text = fruit.title
                 if(this@FruitSuggestionVH.adapterPosition == 0){
-                    fruitSuggestion_btnItem.background.setTint(ContextCompat.getColor(itemView.context, R.color.Brown))
+                    fruitSuggestion_btnItem.background = (ContextCompat.getDrawable(itemView.context, R.drawable.radius_brown))
                 }
                 else{
-                    fruitSuggestion_btnItem.background.setTint(ContextCompat.getColor(itemView.context, R.color.White))
+                    fruitSuggestion_btnItem.background = (ContextCompat.getDrawable(itemView.context, R.drawable.radius_white))
                 }
             }
-
         }
     }
 
