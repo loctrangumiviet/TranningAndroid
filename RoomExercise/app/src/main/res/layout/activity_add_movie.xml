@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ui.AddMovieActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginHorizontal="@dimen/size_40dp"
+        android:layout_marginTop="@dimen/size_40dp"
+        android:layout_marginBottom="@dimen/size_20dp"
+        android:text="@string/select"
+        android:textColor="@color/Black"
+        android:textSize="@dimen/text_size_22sp" />
+
+    <Spinner
+        android:id="@+id/spCategoriesAddMoviesAtv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50dp"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="@dimen/size_40dp"
+        android:layout_marginBottom="@dimen/size_30dp"
+        tools:listitem="@layout/item_category"
+        />
+
+    <EditText
+        android:id="@+id/edtMoviesName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_40dp"
+        android:layout_marginVertical="@dimen/size_40dp"
+        android:background="@drawable/border_edt"
+        android:hint="@string/movies_name"
+        android:textAlignment="center"
+        android:textColorHint="@color/Gray" />
+
+    <Button
+        android:id="@+id/btnAddMovie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_40dp"
+        android:background="@drawable/radius_button"
+        android:text="@string/add" />
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/size_20dp"
+        android:background="@drawable/radius_button"
+        android:text="@string/finish" />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btnRemoveCategories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_10dp"
+        android:background="@drawable/radius_button"
+        android:text="@string/remove_categories" />
+
+</LinearLayout>

@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">RoomExercise</string>
+    <string name="add">Add</string>
+    <string name="show">Show</string>
+    <string name="add_movie">Add Movie</string>
+    <string name="movies_name">Movies Name</string>
+    <string name="movies_categories">Movies Categories</string>
+    <string name="select">Select</string>
+    <string name="finish">Finish</string>
+    <string name="input_keyword">Input KeyWord</string>
+    <string name="search">Search</string>
+    <string name="result">Result</string>
+    <string name="insert_complete">Insert Complete : %s</string>
+    <string name="insert_fail">Insert Fail</string>
+    <string name="category">Category</string>
+    <string name="remove_categories">Remove Categories</string>
+    <string name="message_complete">Insert Movies Complete</string>
+    <string name="selected_item_hint">Selected item…</string>
+    <string name="empty_string" />
 </resources>

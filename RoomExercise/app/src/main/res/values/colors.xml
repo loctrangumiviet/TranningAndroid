@@ -3,4 +3,11 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Sky">#B5DADF</color>
+    <color name="Trans">#30000000</color>
+    <color name="Black">#000000</color>
+    <color name="GrayLight">#ECECEC</color>
+    <color name="Gray">#8C8A8A</color>
+    <color name="Pink">#DA1155</color>
 </resources>
