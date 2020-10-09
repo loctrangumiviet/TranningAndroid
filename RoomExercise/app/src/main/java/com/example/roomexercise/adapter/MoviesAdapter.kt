@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roomexercise.R
-import com.example.roomexercise.model.Movie
+import com.example.roomexercise.data.model.Movie
 import kotlinx.android.synthetic.main.item_category.view.*
 
 class MoviesAdapter: ListAdapter<Movie, MoviesAdapter.MoviesViewHolder>(MoviesCallBack()) {

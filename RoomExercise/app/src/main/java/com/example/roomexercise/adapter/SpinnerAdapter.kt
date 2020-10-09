@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.roomexercise.R
-import com.example.roomexercise.model.Category
+import com.example.roomexercise.data.model.Category
 
 class CustomDropDownAdapter(
     private val context: Context,

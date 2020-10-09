@@ -1,14 +1,14 @@
-package com.example.roomexercise.database
+package com.example.roomexercise.data.local.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.roomexercise.dao.CategoryDAO
-import com.example.roomexercise.dao.MovieDAO
+import com.example.roomexercise.data.local.dao.CategoryDAO
+import com.example.roomexercise.data.local.dao.MovieDAO
 import com.example.roomexercise.helper.GlobalVariables
-import com.example.roomexercise.model.Category
-import com.example.roomexercise.model.Movie
+import com.example.roomexercise.data.model.Category
+import com.example.roomexercise.data.model.Movie
 
 @Database(entities = [Category::class, Movie::class], version = 1, exportSchema = false)
 abstract class MoviesDatabase : RoomDatabase(){
@@ -17,7 +17,7 @@ abstract class MoviesDatabase : RoomDatabase(){
 }
 
 private lateinit var INSTANCE: MoviesDatabase
-fun getDatabase(context: Context):MoviesDatabase{
+fun getDatabase(context: Context): MoviesDatabase {
     synchronized(MoviesDatabase::class.java){
         if (!::INSTANCE.isInitialized){
             INSTANCE = Room.databaseBuilder(
