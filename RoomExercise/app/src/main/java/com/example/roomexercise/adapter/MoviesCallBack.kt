@@ -1,7 +1,7 @@
 package com.example.roomexercise.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.roomexercise.model.Movie
+import com.example.roomexercise.data.model.Movie
 
 class MoviesCallBack : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {

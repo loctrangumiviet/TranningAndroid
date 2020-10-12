@@ -4,23 +4,24 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
-import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.roomexercise.R
-import com.example.roomexercise.database.getDatabase
 import com.example.roomexercise.helper.GlobalMethod
-import com.example.roomexercise.model.Category
+import com.example.roomexercise.data.model.Category
+import com.example.roomexercise.viewmodel.AddCategoriesViewModel
 import kotlinx.android.synthetic.main.activity_add_categories.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class AddCategoriesActivity : AppCompatActivity() {
+    private lateinit var categoriesViewModel: AddCategoriesViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_categories)
+        init()
         initListener()
+    }
+
+    private fun init() {
+        categoriesViewModel = ViewModelProvider(this).get(AddCategoriesViewModel::class.java)
     }
 
 
@@ -30,13 +31,9 @@ class AddCategoriesActivity : AppCompatActivity() {
             val nameCategories = edtCategoryName.text.toString()
             if (nameCategories.isNotEmpty()) {
                 val categories = Category(categoryName = nameCategories)
-                GlobalScope.launch(Dispatchers.IO) {
-                    getDatabase(this@AddCategoriesActivity).categoriesDAO.insertCategories(categories)
-                    withContext(Dispatchers.Main) {
-                        GlobalMethod.showToast(getString(R.string.insert_complete,categories.categoryName), this@AddCategoriesActivity)
-                        edtCategoryName.setText(getString(R.string.empty_string))
-                    }
-                }
+                categoriesViewModel.insert(categories)
+                GlobalMethod.showToast(getString(R.string.insert_complete,categories.categoryName), this@AddCategoriesActivity)
+                edtCategoryName.setText(getString(R.string.empty_string))
             } else {
                 GlobalMethod.showToast(getString(R.string.insert_fail), this)
             }

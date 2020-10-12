@@ -1,4 +1,4 @@
-package com.example.roomexercise.model
+package com.example.roomexercise.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -9,5 +9,5 @@ data class Category(
     @PrimaryKey(autoGenerate = true)
     var categoryID: Int = 0,
     var categoryName: String
-) {
+){
 }

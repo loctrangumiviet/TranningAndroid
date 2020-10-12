@@ -1,9 +1,10 @@
-package com.example.roomexercise.ui
+package com.example.roomexercise
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.roomexercise.R
+import com.example.roomexercise.ui.AddCategoriesActivity
+import com.example.roomexercise.ui.MoviesActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
