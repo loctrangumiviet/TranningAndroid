@@ -14,6 +14,7 @@ import com.example.roomexercise.data.local.database.getDatabase
 import com.example.roomexercise.helper.GlobalVariables
 import com.example.roomexercise.data.model.Category
 import com.example.roomexercise.data.model.Movie
+import com.example.roomexercise.helper.SharedPreferencesManager
 import com.example.roomexercise.viewmodel.AddCategoriesViewModel
 import com.example.roomexercise.viewmodel.AddMovieViewModel
 import com.example.roomexercise.viewmodel.MoviesViewModel
@@ -61,10 +62,10 @@ class MoviesActivity : AppCompatActivity() {
                         adapterMovies?.submitList(movie)
                     })
             }
-            sharedPref?.edit()?.apply {
-                key?.let { putString(GlobalVariables.KEY_SEARCH, it) }
-                category?.let { putInt(GlobalVariables.CATEGORY_ID, it.categoryID) }
-            apply()
+
+            with(SharedPreferencesManager) {
+                setKeySearch(this@MoviesActivity, key)
+                setCategoryID(this@MoviesActivity, category?.categoryID)
             }
         }
     }
@@ -85,8 +86,9 @@ class MoviesActivity : AppCompatActivity() {
 
     private fun init() {
         movieViewModel = ViewModelProvider(this).get(MoviesViewModel::class.java)
-        sharedPref?.getString(GlobalVariables.KEY_SEARCH, "").run {
-            if (!this.isNullOrEmpty()) {
+
+        SharedPreferencesManager.getKeySearch(this)?.apply {
+            if (this.isNotEmpty()) {
                 edtKeyWordSearch.setText(this)
             }
         }
@@ -98,7 +100,7 @@ class MoviesActivity : AppCompatActivity() {
             val customAdapter = CustomDropDownAdapter(this@MoviesActivity, categories)
             GlobalScope.launch(Dispatchers.IO) {
                 val index = categories.indexOf(
-                    sharedPref?.getInt(GlobalVariables.CATEGORY_ID, -1)?.let {
+                    SharedPreferencesManager.getCategoryID(this@MoviesActivity)?.let {
                         movieViewModel.getCategoriesByID(it)
                     })
                 withContext(Dispatchers.Main) {
