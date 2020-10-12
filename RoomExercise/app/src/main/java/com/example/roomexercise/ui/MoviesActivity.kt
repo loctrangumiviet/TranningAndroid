@@ -64,7 +64,7 @@ class MoviesActivity : AppCompatActivity() {
             sharedPref?.edit()?.apply {
                 key?.let { putString(GlobalVariables.KEY_SEARCH, it) }
                 category?.let { putInt(GlobalVariables.CATEGORY_ID, it.categoryID) }
-                apply()
+            apply()
             }
         }
     }
@@ -95,14 +95,13 @@ class MoviesActivity : AppCompatActivity() {
             categories = categoriesList.apply {
                 add(0, Category(-1, getString(R.string.selected_item_hint)))
             }
-            var index = -1
             val customAdapter = CustomDropDownAdapter(this@MoviesActivity, categories)
             GlobalScope.launch(Dispatchers.IO) {
-                val oldCategory = sharedPref?.getInt(GlobalVariables.CATEGORY_ID, -1)?.let {
-                    movieViewModel.getCategoriesByID(it)
-                }
-                index = categories.indexOf(oldCategory)
-                withContext(Dispatchers.Main){
+                val index = categories.indexOf(
+                    sharedPref?.getInt(GlobalVariables.CATEGORY_ID, -1)?.let {
+                        movieViewModel.getCategoriesByID(it)
+                    })
+                withContext(Dispatchers.Main) {
                     with(spCategoriesMoviesAtv) {
                         adapter = customAdapter
                         if (index != -1) {
