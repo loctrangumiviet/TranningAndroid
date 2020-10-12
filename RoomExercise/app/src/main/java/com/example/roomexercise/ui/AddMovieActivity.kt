@@ -54,13 +54,6 @@ class AddMovieActivity : AppCompatActivity() {
                 movieViewModel.insertMovies(movies)
                 GlobalMethod.showToast(getString(R.string.message_complete),this@AddMovieActivity)
                 edtMoviesName.setText(getString(R.string.empty_string))
-//                GlobalScope.launch(Dispatchers.IO) {
-//                    getDatabase(this@AddMovieActivity).moviesDAO.insertMovies(movies)
-//                    withContext(Dispatchers.Main){
-//                        GlobalMethod.showToast(getString(R.string.message_complete),this@AddMovieActivity)
-//                        edtMoviesName.setText(getString(R.string.empty_string))
-//                    }
-//                }
             } else {
                 GlobalMethod.showToast(getString(R.string.insert_fail),this)
             }

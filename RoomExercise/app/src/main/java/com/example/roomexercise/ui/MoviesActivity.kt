@@ -90,21 +90,25 @@ class MoviesActivity : AppCompatActivity() {
                 edtKeyWordSearch.setText(this)
             }
         }
-        val oldCategory = sharedPref?.getInt(GlobalVariables.CATEGORY_ID, -1)?.let {
-            GlobalScope.launch(Dispatchers.IO) {
-                movieViewModel.getCategoriesByID(it)
-            }
-        }
-        val index = categories.indexOf(oldCategory)
+
         movieViewModel.categories.observe(this@MoviesActivity, { categoriesList ->
             categories = categoriesList.apply {
                 add(0, Category(-1, getString(R.string.selected_item_hint)))
             }
+            var index = -1
             val customAdapter = CustomDropDownAdapter(this@MoviesActivity, categories)
-            with(spCategoriesMoviesAtv) {
-                adapter = customAdapter
-                if (index != -1) {
-                    setSelection(index)
+            GlobalScope.launch(Dispatchers.IO) {
+                val oldCategory = sharedPref?.getInt(GlobalVariables.CATEGORY_ID, -1)?.let {
+                    movieViewModel.getCategoriesByID(it)
+                }
+                index = categories.indexOf(oldCategory)
+                withContext(Dispatchers.Main){
+                    with(spCategoriesMoviesAtv) {
+                        adapter = customAdapter
+                        if (index != -1) {
+                            setSelection(index)
+                        }
+                    }
                 }
             }
         })
