@@ -14,6 +14,7 @@ import com.example.roomexercise.data.local.database.getDatabase
 import com.example.roomexercise.helper.GlobalVariables
 import com.example.roomexercise.data.model.Category
 import com.example.roomexercise.data.model.Movie
+import com.example.roomexercise.viewmodel.AddCategoriesViewModel
 import com.example.roomexercise.viewmodel.AddMovieViewModel
 import com.example.roomexercise.viewmodel.MoviesViewModel
 import kotlinx.android.synthetic.main.activity_movies.*
@@ -45,32 +46,18 @@ class MoviesActivity : AppCompatActivity() {
         btnSearch.setOnClickListener {
             category = spCategoriesMoviesAtv.selectedItem as Category
             key = edtKeyWordSearch.text.toString()
-//            GlobalScope.launch(Dispatchers.IO) {
-//                if (category?.categoryID == -1 && key!!.isEmpty()) {
-//                    //getDatabase(this@MoviesActivity).moviesDAO.getALlMovies()
-//                } else if (key!!.isEmpty()) {
-//                    getDatabase(this@MoviesActivity).moviesDAO.getListMovieByCategoryID(categoryID = category!!.categoryID)
-//                } else {
-//                    getDatabase(this@MoviesActivity).moviesDAO.getListMovies(
-//                        "%${key}%",
-//                        categoryID = category!!.categoryID
-//                    )
-//                }
-//                withContext(Dispatchers.Main) {
-//
-//                }
-//            }
             if (category?.categoryID == -1 && key!!.isEmpty()) {
                 movieViewModel.movies.observe(this, { movie ->
                     adapterMovies?.submitList(movie)
                 })
             } else if (key!!.isEmpty()) {
-                movieViewModel.getMoviesByCategoryID(category!!.categoryID).observe(this, { movie ->
-                    adapterMovies?.submitList(movie)
-                })
+                movieViewModel.getMoviesByCategoryID(category!!.categoryID)
+                    .observe(this@MoviesActivity, { movie ->
+                        adapterMovies?.submitList(movie)
+                    })
             } else {
                 movieViewModel.getMoviesSearch("%${key}%", category!!.categoryID)
-                    .observe(this, { movie ->
+                    .observe(this@MoviesActivity, { movie ->
                         adapterMovies?.submitList(movie)
                     })
             }
@@ -103,28 +90,23 @@ class MoviesActivity : AppCompatActivity() {
                 edtKeyWordSearch.setText(this)
             }
         }
-
-//        GlobalScope.launch(Dispatchers.IO) {
         val oldCategory = sharedPref?.getInt(GlobalVariables.CATEGORY_ID, -1)?.let {
-            getDatabase(this@MoviesActivity).categoriesDAO.getListCategoryByID(it)
+            GlobalScope.launch(Dispatchers.IO) {
+                movieViewModel.getCategoriesByID(it)
+            }
         }
-//            categories = getDatabase(this@MoviesActivity).categoriesDAO.getListCategories().apply {
-//                add(0, Category(-1, getString(R.string.selected_item_hint)))
-//            }
+        val index = categories.indexOf(oldCategory)
         movieViewModel.categories.observe(this@MoviesActivity, { categoriesList ->
             categories = categoriesList.apply {
                 add(0, Category(-1, getString(R.string.selected_item_hint)))
             }
+            val customAdapter = CustomDropDownAdapter(this@MoviesActivity, categories)
+            with(spCategoriesMoviesAtv) {
+                adapter = customAdapter
+                if (index != -1) {
+                    setSelection(index)
+                }
+            }
         })
-        val index = categories.indexOf(oldCategory)
-//            withContext(Dispatchers.Main) {
-        CustomDropDownAdapter(this@MoviesActivity, categories).run {
-            spCategoriesMoviesAtv.adapter = this
-        }
-        if (index != -1) {
-            spCategoriesMoviesAtv.setSelection(index)
-        }
     }
-//        }
-//    }
 }

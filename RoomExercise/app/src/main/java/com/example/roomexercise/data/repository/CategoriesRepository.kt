@@ -11,4 +11,8 @@ class CategoriesRepository(private val categoryDAO: CategoryDAO) {
     suspend fun insertCategory(category: Category){
         categoryDAO.insertCategories(category)
     }
+
+    fun getCategoriesByID(id: Int): Category{
+        return categoryDAO.getCategoryByID(id)
+    }
 }

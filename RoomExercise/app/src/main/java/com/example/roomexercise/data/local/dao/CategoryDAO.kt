@@ -16,5 +16,5 @@ interface CategoryDAO {
     fun getListCategories(): LiveData<MutableList<Category>>
 
     @Query("SELECT * FROM category WHERE categoryID = :id")
-    fun getListCategoryByID(id: Int): Category
+    fun getCategoryByID(id: Int): Category
 }

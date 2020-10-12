@@ -9,5 +9,5 @@ data class Category(
     @PrimaryKey(autoGenerate = true)
     var categoryID: Int = 0,
     var categoryName: String
-) {
+){
 }
