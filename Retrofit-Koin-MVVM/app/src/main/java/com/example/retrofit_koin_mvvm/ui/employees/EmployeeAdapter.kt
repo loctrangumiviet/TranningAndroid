@@ -19,7 +19,7 @@ class EmployeeAdapter : ListAdapter<Employee, EmployeeAdapter.EmployeeViewHolder
 
     inner class EmployeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind(employee: Employee){
-            itemView.tvEmployeeName.text = employee.employee_name
+            itemView.tvEmployeeName.text = employee.employeeName
         }
     }
 
