@@ -25,7 +25,6 @@ class AddCategoriesActivity : AppCompatActivity() {
     }
 
 
-    @SuppressLint("ShowToast")
     private fun initListener() {
         btnAddCategory.setOnClickListener {
             val nameCategories = edtCategoryName.text.toString()
