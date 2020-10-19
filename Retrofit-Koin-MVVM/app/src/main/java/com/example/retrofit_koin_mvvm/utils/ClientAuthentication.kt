@@ -23,26 +23,4 @@ class ClientAuthentication {
             return chain.proceed(request)
         }
     }
-
-    fun providerClientAuthentication(): Retrofit? {
-        var retrofit: Retrofit? = null
-        val logging = HttpLoggingInterceptor()
-        // set your desired log level
-        logging.level = HttpLoggingInterceptor.Level.BODY
-        val httpClient = OkHttpClient.Builder()
-        val builder: Retrofit.Builder = Retrofit.Builder()
-            .baseUrl(baseUrl)
-        val interceptor = AuthenticationInterceptor(Credentials.basic("", ""))
-        if (!httpClient.interceptors().contains(interceptor)) {
-            httpClient.addInterceptor(interceptor)
-            httpClient.addInterceptor(logging)
-            builder.client(httpClient.build())
-            retrofit = builder // .baseUrl(URL_BASE)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build())
-                .build()
-        }
-        return retrofit
-    }
 }
