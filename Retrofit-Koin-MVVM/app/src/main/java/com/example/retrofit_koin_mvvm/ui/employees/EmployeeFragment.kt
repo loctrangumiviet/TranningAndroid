@@ -9,6 +9,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofit_koin_mvvm.R
+import com.example.retrofit_koin_mvvm.data.entities.DataEmployee
 import kotlinx.android.synthetic.main.fragment_employee.*
 
 class EmployeeFragment : Fragment() {
@@ -24,21 +25,21 @@ class EmployeeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
         setupObserver()
     }
 
-    private fun setupRecyclerView() {
+    private fun setupRecyclerView(dataEmployee: DataEmployee) {
         employeeAdapter = EmployeeAdapter()
         with(rcvEmployee) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = employeeAdapter
         }
+        employeeAdapter.submitList(dataEmployee.data)
     }
 
     private fun setupObserver() {
         viewModel.employees.observe(viewLifecycleOwner, Observer {
-            employeeAdapter.submitList(it.data)
+            setupRecyclerView(it)
         })
     }
 }
