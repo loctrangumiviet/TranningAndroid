@@ -22,8 +22,6 @@ val appModule = module {
     single { provideHttpClient() }
     single { providerEmployeeService(get()) }
     single { providerClientAuthentication(get()) }
-    //    single { providerRetrofit(get()) }
-
 }
 
 fun providerGson(): Gson = GsonBuilder().create()
@@ -40,11 +38,6 @@ fun provideHttpClient(): OkHttpClient {
     }
     return okHttpClientBuilder.build()
 }
-
-fun providerRetrofit(gson: Gson): Retrofit = Retrofit.Builder()
-    .baseUrl(baseUrl)
-    .addConverterFactory(GsonConverterFactory.create(gson))
-    .build()
 
 fun providerClientAuthentication(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
